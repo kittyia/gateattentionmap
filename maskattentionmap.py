@@ -325,8 +325,6 @@ if __name__ == "__main__":
     print("-"*100)
     print(model) 
     print("-"*100)
-    
-
     # Step2: prune head or mask attention map or gated attention  
     # ban heads id list args.banheads
     idx_pruned_heads = args.banheads
@@ -345,7 +343,7 @@ if __name__ == "__main__":
         for head_id in heads: 
             print(f"setting {layer_id} - {head_id} to zeros...")
             start = head_dim*head_id; end = head_dim*(head_id+1); 
-            model.transformer.h[layer_id].attn.attention.out_proj.weight.data[:, start:end] = 0
+            model.transformer.h[layer_id].attn.attention.out_proj.weight.data[:, start:end] = 0 # 0.75*model.transformer.h[layer_id].attn.attention.out_proj.weight.data[:, start:end]
               
     
 
